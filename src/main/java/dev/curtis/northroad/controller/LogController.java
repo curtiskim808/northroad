@@ -7,7 +7,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.OffsetDateTime;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
@@ -33,9 +33,9 @@ public class LogController {
     @GetMapping("/timerange")
     public ResponseEntity<List<LogEntry>> getLogsByTimeRange(
             @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
-            OffsetDateTime start,
+            LocalDateTime start,
             @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
-            OffsetDateTime end) {
+            LocalDateTime end) {
         return ResponseEntity.ok(logService.findByTimeRange(start, end));
     }
 
@@ -48,7 +48,7 @@ public class LogController {
     @DeleteMapping("/cleanup")
     public ResponseEntity<Void> cleanupOldLogs(
             @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
-            OffsetDateTime before) {
+            LocalDateTime before) {
         logService.deleteOldLogs(before);
         return ResponseEntity.ok().build();
     }

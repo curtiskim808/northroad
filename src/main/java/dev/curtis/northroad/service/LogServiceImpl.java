@@ -6,7 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
-import java.time.OffsetDateTime;
+
 import java.util.List;
 import java.util.UUID;
 
@@ -22,7 +22,7 @@ public class LogServiceImpl implements LogService {
             logEntry.setId(UUID.randomUUID());
         }
         if (logEntry.getTimestamp() == null) {
-            logEntry.setTimestamp(OffsetDateTime.now());
+            logEntry.setTimestamp(LocalDateTime.now());
         }
         return logRepository.save(logEntry);
     }
@@ -38,7 +38,7 @@ public class LogServiceImpl implements LogService {
     }
 
     @Override
-    public List<LogEntry> findByTimeRange(OffsetDateTime start, OffsetDateTime end) {
+    public List<LogEntry> findByTimeRange(LocalDateTime start, LocalDateTime end) {
         return logRepository.findByTimestampBetween(start, end);
     }
 
@@ -48,9 +48,9 @@ public class LogServiceImpl implements LogService {
     }
 
     @Override
-    public void deleteOldLogs(OffsetDateTime before) {
+    public void deleteOldLogs(LocalDateTime before) {
         List<LogEntry> oldLogs = logRepository.findByTimestampBetween(
-                OffsetDateTime.MIN, before);
+                LocalDateTime.MIN, before);
         logRepository.deleteAll(oldLogs);
     }
 }
