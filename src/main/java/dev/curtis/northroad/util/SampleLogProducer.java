@@ -17,7 +17,7 @@ public class SampleLogProducer {
 
     private final KafkaProducer kafkaProducer;
 
-    @Scheduled(fixedRate = 30000) // Produces a log every 5 seconds
+    @Scheduled(fixedRate = 30000) // Produces a log every 30 seconds
     public void generateSampleLog() {
         LogEntry logEntry = LogEntry.builder()
                 .id(UUID.randomUUID())
