@@ -17,6 +17,11 @@ public class LogServiceImpl implements LogService {
     private final LogRepository logRepository;
 
     @Override
+    public List<LogEntry> findAll() {
+        return logRepository.findAll();
+    }
+
+    @Override
     public LogEntry saveLog(LogEntry logEntry) {
         if (logEntry.getId() == null) {
             logEntry.setId(UUID.randomUUID());
@@ -50,7 +55,7 @@ public class LogServiceImpl implements LogService {
     @Override
     public void deleteOldLogs(LocalDateTime before) {
         List<LogEntry> oldLogs = logRepository.findByTimestampBetween(
-                LocalDateTime.MIN, before);
+                before.minusYears(10), before);
         logRepository.deleteAll(oldLogs);
     }
 }

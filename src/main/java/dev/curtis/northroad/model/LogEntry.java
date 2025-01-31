@@ -31,5 +31,4 @@ public class LogEntry {
     private String eventType;
     private String message;
     private Map<String, String> context;
-
 }

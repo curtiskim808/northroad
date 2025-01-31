@@ -18,6 +18,11 @@ public class LogController {
 
     private final LogService logService;
 
+    @GetMapping
+    public ResponseEntity<List<LogEntry>> getAllLogs() {
+        return ResponseEntity.ok(logService.findAll());
+    }
+
     @GetMapping("/service/{serviceId}")
     public ResponseEntity<List<LogEntry>> getLogsByServiceId(
             @PathVariable UUID serviceId) {

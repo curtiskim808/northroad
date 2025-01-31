@@ -13,4 +13,6 @@ public interface LogService {
     List<LogEntry> findByTimeRange(LocalDateTime start, LocalDateTime end);
     List<LogEntry> findByEventType(String eventType);
     void deleteOldLogs(LocalDateTime before);
+
+    List<LogEntry> findAll();
 }

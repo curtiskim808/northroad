@@ -16,7 +16,7 @@ public interface LogRepository extends CassandraRepository<LogEntry, UUID> {
 
     List<LogEntry> findByServiceName(String serviceName);
 
-    @Query("SELECT * FROM logs WHERE timestamp >= :start AND timestamp <= :end ALLOW FILTERING")
+    @Query("SELECT * FROM logs WHERE timestamp > ?0 AND timestamp < ?1 ALLOW FILTERING")
     List<LogEntry> findByTimestampBetween(LocalDateTime start, LocalDateTime end);
 
     List<LogEntry> findByEventType(String eventType);

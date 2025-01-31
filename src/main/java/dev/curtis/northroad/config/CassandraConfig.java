@@ -8,6 +8,7 @@ import org.springframework.data.cassandra.SessionFactory;
 import org.springframework.data.cassandra.config.CqlSessionFactoryBean;
 import org.springframework.data.cassandra.config.SchemaAction;
 import org.springframework.data.cassandra.config.SessionFactoryFactoryBean;
+import org.springframework.data.cassandra.core.CassandraAdminTemplate;
 import org.springframework.data.cassandra.core.CassandraOperations;
 import org.springframework.data.cassandra.core.CassandraTemplate;
 import org.springframework.data.cassandra.core.convert.CassandraConverter;
@@ -69,4 +70,5 @@ public class CassandraConfig {
     public CassandraOperations cassandraTemplate(SessionFactory sessionFactory, CassandraConverter converter) {
         return new CassandraTemplate(sessionFactory, converter);
     }
+
 }
